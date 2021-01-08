@@ -1,0 +1,24 @@
+﻿
+@model Propose.Models.Label
+@{
+    ViewBag.Title = "Afisare eticheta";
+}
+
+<h2 class="font-montserrat">@ViewBag.Title</h2>
+
+<p>@Model.LabelName</p>
+
+<form method="post" action="/Labels/Delete/@Model.LabelId">
+
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+
+    <button class="btn btn-info clasa-butoane" type="submit">Sterge eticheta</button>
+
+</form>
+<br />
+<a class="btn btn-info clasa-butoane" href="/Labels/Index/">Afisare lista etichete</a>
+
+<br />
+<hr />
+<br />
+

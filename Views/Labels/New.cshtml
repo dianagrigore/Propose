@@ -1,0 +1,20 @@
+﻿
+
+@{
+    ViewBag.Title = "Adaugare eticheta";
+}
+
+
+<h2 class="font-montserrat">Adaugare Eticheta</h2>
+
+<form method="post" action="/Labels/New">
+
+    @Html.Label("LabelName", "Denumire eticheta")
+    <br />
+
+    @Html.TextBox("LabelName", null, new { @class = "form-control" })
+    <br /><br />
+
+    <button class="btn btn-info clasa-butoane" type="submit">Adauga eticheta</button>
+</form>
+

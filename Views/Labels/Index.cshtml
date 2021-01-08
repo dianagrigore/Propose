@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Lista etichete";
+}
+
+@if (TempData.ContainsKey("message"))
+{
+    <h1>@ViewBag.message</h1>
+}
+
+<h2 class="font-montserrat">@ViewBag.Title</h2>
+<br />
+
+@foreach (var label in ViewBag.Labels)
+{
+    @Html.Label("LabelName", "Denumire eticheta")
+    <p>@label.LabelName</p>
+    <a class="btn btn-info clasa-butoane" href="/Labels/Show/@label.LabelId">Afisare eticheta</a>
+    <a class="btn btn-info clasa-butoane" href="/Labels/Edit/@label.LabelId">Editare eticheta</a>
+    <br />
+    <hr />
+    <br />
+}

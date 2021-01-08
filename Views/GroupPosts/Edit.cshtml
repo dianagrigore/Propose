@@ -1,0 +1,17 @@
+﻿@model Propose.Models.GroupPost
+
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="font-montserrat">Editare postare</h2>
+<form method="post" action="/GroupPosts/Edit/@Model.GroupPostId">
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <label>Continut postare</label>
+    <br />
+    <textarea name="Content">@Model.Content</textarea>
+    <br />
+    <button class="btn clasa-galben  clasa-butoane" type="submit">Editeaza postare</button>
+</form>
+

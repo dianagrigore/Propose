@@ -1,0 +1,36 @@
+﻿
+@model Propose.Models.Post
+
+
+<h2 class="font-montserrat">Adaugare postare</h2>
+@using (Html.BeginForm(actionName: "New", controllerName: "Posts"))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.Label("Title", "Titlu Postare")
+    <br />
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Content", "Continut Postare")
+    <br />
+    @Html.TextArea("Content", null, new { @class = "form-control summernote" })
+    @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <label>Selectati eticheta</label>
+    @Html.DropDownListFor(m => m.LabelId, new SelectList(Model.Lbl, "Value", "Text"),
+    "Selectati eticheta", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.LabelId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-sm btn-info clasa-butoane" type="submit">Adauga postare</button>
+
+}
+
+
+

@@ -1,0 +1,17 @@
+﻿@model Propose.Models.Comment
+
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="font-montserrat">Editare comentariu</h2>
+<form method="post" action="/Comments/Edit/@Model.CommentId">
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <label>Continut comentariu</label>
+    <br />
+    <textarea name="Content">@Model.Content</textarea>
+    <br />
+    <button class="btn btn-info clasa-butoane" type="submit">Editeaza comentariu</button>
+</form>
+

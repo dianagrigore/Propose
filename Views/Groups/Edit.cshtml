@@ -1,0 +1,37 @@
+﻿@model Propose.Models.Group
+
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Groups", routeValues: new { id = Model.GroupId }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    <br />
+    @Html.Label("Name", "Nume grup")
+    <br />
+    @Html.Editor("Name")
+    <br />
+    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    <br /><br />
+
+    @Html.Label("Description", "Descriere grup")
+    <br />
+    @Html.Editor("Description", new { htmlAttributes = new { @class = "form-control summernote" } })
+    @* @Html.TextArea("Content", Model.Content, new { @class = "form-control summernote" })*@
+    <br />
+    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+    <br /><br />
+
+    <label>Selectati eticheta</label>
+    @Html.DropDownListFor(m => m.LabelId,
+        new SelectList(Model.Lbl, "Value", "Text"),
+        "Selectati eticheta", new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.LabelId, "", new { @class = "text-danger" })
+    <br /><br />
+
+    <button class="btn btn-sm clasa-galben clasa-butoane " type="submit">Editeaza grupul</button>
+}
+
+
+
+

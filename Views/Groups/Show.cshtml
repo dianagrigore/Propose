@@ -1,0 +1,138 @@
+﻿@model Propose.Models.Group
+@{
+    ViewBag.Title = "Show";
+}
+<br />
+<div class="row">
+    <div class="col-sm-7">
+        <div>
+            @Html.Partial("GroupInfo", Model)
+
+        </div>
+
+
+    </div>
+
+    <div class="col-sm-3">
+        <br />
+        <ul class="list-group">
+            <br />
+            <br />
+            <br />
+            <br />
+            <h4><strong> Membrii grupului </strong></h4>
+            @foreach (var member in Model.Members)
+            {
+                <li class="list-group-item"> @member.Email @member.FirstName @member.LastName</li>
+
+            }
+        </ul>
+        @if (Model.UserId != ViewBag.utilizatorulCurent)
+        {
+
+            <form method="post" action="/Groups/Join">
+                <input type="hidden" name="GroupIdJ" value="@Model.GroupId" />
+                <button type="submit" class="btn clasa-galben btn-block clasa-butoane">Alatura-te grupului </button>
+            </form>
+            <form method="post" action="/Groups/Leave">
+                <input type="hidden" name="GroupId" value="@Model.GroupId" />
+                <button type="submit" class="btn btn-danger btn-block clasa-butoane"> Paraseste grupul</button>
+            </form>
+        }
+    </div>
+
+
+
+</div>
+@if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
+{
+    <div class="panel-footer">
+        <a class="btn clasa-galben clasa-butoane pull-left" href="/Groups/Edit/@Model.GroupId">Modifica grup</a>
+        @using (Html.BeginForm(actionName: "Delete", controllerName: "Groups", method: FormMethod.Post, routeValues: new { id = @Model.GroupId }))
+        {
+
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger pull-right clasa-butoane" type="submit">Sterge grupul</button>
+        }
+        <div class="clearfix"></div>
+    </div>
+}
+
+
+<br />
+
+<br />
+@foreach (var pos in Model.GroupPosts)
+{
+    <div class="panel panel-info container">
+        <div class="row">
+            <div class="col-8">
+                <div class="col-xs-4 card card-white comment1">
+                    <div class="comment-heading col">
+                        <div class="media">   <br /> <br />
+                            <div class="media-left">
+                                <img src="/Pictures/man.jpg" class="media-object" style="width:30px">
+                            </div>
+                            <div class="media-body">
+                             
+                                <a><b> @pos.User.UserName</b></a>
+                                a postat in grup.
+                                <h6 class="text-muted time">@pos.Date</h6>
+                                <div class="comment1-description">
+                                    <p>@pos.Content</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="float-left meta row comment1-footer">
+                          
+                            @if (pos.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
+                            {
+                                <div style="display: inline-block; float : left; margin-right: 15px">
+                                    <a class="glyphicon glyphicon-pencil" href="/GroupPosts/Edit/@pos.GroupPostId"></a>
+                                </div>
+                                <div style="display: inline-block; float : left">
+                                    <form method="post" action="/GroupPosts/Delete/@pos.GroupPostId">
+                                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                        <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+                                    </form>
+                                </div>
+                            }
+                           
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+@if (ViewBag.afisareEditor == true)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div>
+                    <form method="post" action="/Groups/Show/@Model.GroupId">
+                        <div class="panel-body">
+                            <input type="hidden" name="GroupId" value="@Model.GroupId" />
+                            <br />
+                            <textarea class="form-control" name="Content"></textarea>
+                            @Html.ValidationMessage("Content", "", new { @class = "text-danger" })
+                            <br />
+                            <button class="btn clasa-galben clasa-butoane" type="submit">Adauga postare</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+}

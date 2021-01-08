@@ -1,0 +1,20 @@
+﻿
+@model Propose.Models.Label
+
+<h2 class="font-montserrat">Editare categorie</h2>
+
+<form method="post" action="/Labels/Edit/@Model.LabelId">
+
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(m => m.LabelId)
+
+    @Html.Label("LabelName", "Denumire eticheta")
+    <br />
+    @Html.Editor("LabelName")
+    <br /><br />
+
+    <button class="btn btn-info clasa-butoane" type="submit">Modifica eticheta</button>
+</form>
+
+
