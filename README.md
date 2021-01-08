@@ -6,7 +6,7 @@
 * [Team](#Team)
 
 ## Description
-A social media web application built using ASP.NET aiming to connect people with similar personal project ideas.
+A social media web application built using ASP.NET, aiming to connect people with similar personal project ideas.
 	
 ## Functionalities
 The micro-social platform has 3 types of users: 
