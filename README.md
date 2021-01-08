@@ -24,4 +24,4 @@ The micro-social platform has 3 types of users:
 * Entity Framework 6.0
 
 ## Team
-  The app was developed by [Diana Grigore](https://github.com/dianagrigore) and [Ioana Pintilie] (https://github.com/ioanapintilie07) as a final project in our Web Development Class at the University of Bucharest, 2020-2021.
+  The app was developed by [Diana Grigore](https://github.com/dianagrigore) and [Ioana Pintilie](https://github.com/ioanapintilie07) as a final project in our Web Development Class at the University of Bucharest, 2020-2021.
